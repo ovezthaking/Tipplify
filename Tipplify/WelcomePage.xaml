@@ -1,0 +1,21 @@
+﻿<Page
+    x:Class="Tipplify.WelcomePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Tipplify"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" RequestedTheme="Dark">
+
+    <Grid>
+        <Image x:Name="WelcomePNG" Source="Assets\WelcomeTipple.png" RequestedTheme="Dark" Margin="0,53,0,91"  />
+        <StackPanel>
+            <TextBlock Text="Witaj w Tipplify!" FontSize="50px" FontFamily="Comic sans" SelectionChanged="TextBlock_SelectionChanged" TextAlignment="Center" Margin="0,130,0,0" />
+            <TextBlock Text="Ochota na drinka?" FontSize="25px" FontFamily="Comic Sans MS" SelectionChanged="TextBlock_SelectionChanged"  Width="231" Height="63" TextAlignment="Center"/>
+
+        </StackPanel>
+        <Button x:Name="WelcomeButton" Content="Jasne!" HorizontalAlignment="Center" Margin="0,340,0,0" VerticalAlignment="Top" Opacity="0.595"/>
+
+    </Grid>
+</Page>

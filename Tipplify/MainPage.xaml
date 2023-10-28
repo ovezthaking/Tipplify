@@ -9,7 +9,8 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <StackPanel x:Name="contentPanel" Margin="120,30,0,0">
+        
+        <StackPanel x:Name="contentPanel" Margin="60,19,60,11">
             <TextBlock HorizontalAlignment="Left" Text="Hello World" FontSize="36"/>
             <TextBlock Text="What's your name?"/>
             <StackPanel x:Name="inputPanel" Orientation="Horizontal" Margin="0,20,0,20">
@@ -18,5 +19,6 @@
             </StackPanel>
             <TextBlock x:Name="greetingOutput"/>
         </StackPanel>
+        
     </Grid>
 </Page>

@@ -4,7 +4,7 @@
 //
 
 #include "pch.h"
-#include "MainPage.xaml.h"
+#include "WelcomePage.xaml.h"
 
 using namespace Tipplify;
 
@@ -65,7 +65,7 @@ void App::OnLaunched(Windows::ApplicationModel::Activation::LaunchActivatedEvent
                 // Kiedy stos nawigacji nie jest przywrócony, przejdź do pierwszej strony,
                 // konfigurując nową stronę przez przekazanie wymaganych informacji jako
                 // parametr nawigacji
-                rootFrame->Navigate(TypeName(MainPage::typeid), e->Arguments);
+                rootFrame->Navigate(TypeName(WelcomePage::typeid), e->Arguments);
             }
             // Umieść ramkę w bieżącym oknie
             Window::Current->Content = rootFrame;
@@ -82,7 +82,7 @@ void App::OnLaunched(Windows::ApplicationModel::Activation::LaunchActivatedEvent
                 // Kiedy stos nawigacji nie jest przywrócony, przejdź do pierwszej strony,
                 // konfigurując nową stronę przez przekazanie wymaganych informacji jako
                 // parametr
-                rootFrame->Navigate(TypeName(MainPage::typeid), e->Arguments);
+                rootFrame->Navigate(TypeName(WelcomePage::typeid), e->Arguments);
             }
             // Upewnij się, ze bieżące okno jest aktywne
             Window::Current->Activate();

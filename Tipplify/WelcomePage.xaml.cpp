@@ -1,10 +1,10 @@
 ﻿//
-// MainPage.xaml.cpp
-// Implementacja klasy MainPage.
+// WelcomePage.xaml.cpp
+// Implementacja klasy WelcomePage
 //
 
 #include "pch.h"
-#include "MainPage.xaml.h"
+#include "WelcomePage.xaml.h"
 
 using namespace Tipplify;
 
@@ -19,16 +19,15 @@ using namespace Windows::UI::Xaml::Input;
 using namespace Windows::UI::Xaml::Media;
 using namespace Windows::UI::Xaml::Navigation;
 
-//Szablon elementu Pusta strona jest udokumentowany na stronie https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x415
+//Szablon elementu Pusta strona jest udokumentowany na stronie https://go.microsoft.com/fwlink/?LinkId=234238
 
-MainPage::MainPage()
+WelcomePage::WelcomePage()
 {
 	InitializeComponent();
 }
 
 
-void Tipplify::MainPage::Button_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+void Tipplify::WelcomePage::TextBlock_SelectionChanged(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
-	greetingOutput->Text = "Hello, " + nameInput->Text + "!";
-}
 
+}
