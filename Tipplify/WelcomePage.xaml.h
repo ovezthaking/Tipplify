@@ -19,5 +19,6 @@ namespace Tipplify
 		WelcomePage();
 	private:
 		void TextBlock_SelectionChanged(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void NavToMain(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 	};
 }

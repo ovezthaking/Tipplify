@@ -8,17 +8,64 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        
-        <StackPanel x:Name="contentPanel" Margin="60,19,60,11">
-            <TextBlock HorizontalAlignment="Left" Text="Hello World" FontSize="36"/>
-            <TextBlock Text="What's your name?"/>
-            <StackPanel x:Name="inputPanel" Orientation="Horizontal" Margin="0,20,0,20">
-                <TextBox x:Name="nameInput" Width="300" HorizontalAlignment="Left"/>
-                <Button x:Name="inputButton" Content="Say &quot;Hello&quot;" Click="Button_Click"/>
-            </StackPanel>
-            <TextBlock x:Name="greetingOutput"/>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Górna część strony -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="20">
+            <!-- Wyszukiwanie -->
+            <TextBox PlaceholderText="Wyszukaj..." Width="200" Margin="0,0,20,0"/>
+
+            <!-- Lista rzeczy -->
+            <ComboBox Width="200">
+
+                <ComboBoxItem Content="Champagne Cocktail"/>
+                <ComboBoxItem Content=""/>
+                <ComboBoxItem Content=""/>
+            </ComboBox>
+
+            <!-- Przycisk do wyszukiwania -->
+            <Button Content="Szukaj" HorizontalAlignment="Left"/>
         </StackPanel>
-        
+
+        <!-- Dolna część strony -->
+        <Grid Grid.Row="1" Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="156*"/>
+                <ColumnDefinition Width="157*"/>
+                <ColumnDefinition Width="470*"/>
+                <ColumnDefinition Width="157*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Lewa kolumna -->
+            <StackPanel Grid.Column="0" Grid.ColumnSpan="2">
+
+                <TextBlock Text="CHAMPAGNE COCKTAIL" FontSize="24" FontWeight="Bold" Margin="0,0,0,10" FontFamily="Comic Sans MS"/>
+
+
+                <Image Source="Assets\champagnecocktail.jpg" Width="454" Height="713" Margin="0,0,0,10"/>
+            </StackPanel>
+
+            <!-- Środkowa kolumna -->
+            <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Margin="314,0,0,0">
+
+                <TextBlock Text="Składniki:" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+                <TextBlock Text="90 ML WYTRAWNEGO SZAMPANA 🍾"/>
+                <TextBlock Text="10 ML KONIAKU 🥃"/>
+                <TextBlock Text="DWIE KROPLE ANGOSTURY 🍼"/>
+                <TextBlock Text="KOSTKA CUKRU 🧊"/>
+
+                <!-- Opis -->
+                <TextBlock Text="Opis:" FontSize="18" FontWeight="Bold" Margin="0,20,0,10"/>
+                <TextBlock TextWrapping="Wrap" Text="Kostkę cukru nasączamy angosturą i umieszczamy w kieliszku. Wlewamy na nią koniak, następnie powoli dodajemy szampan. Champagne cocktail  możemy ozdobić plastrem pomarańczy i wisienką koktajlową."/>
+            </StackPanel>
+
+            <!-- Prawa kolumna -->
+
+        </Grid>
     </Grid>
+
 </Page>

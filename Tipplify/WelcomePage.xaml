@@ -15,7 +15,7 @@
             <TextBlock Text="Ochota na drinka?" FontSize="25px" FontFamily="Comic Sans MS" SelectionChanged="TextBlock_SelectionChanged"  Width="231" Height="63" TextAlignment="Center"/>
 
         </StackPanel>
-        <Button x:Name="WelcomeButton" Content="Jasne!" HorizontalAlignment="Center" Margin="0,340,0,0" VerticalAlignment="Top" Opacity="0.595"/>
+        <Button x:Name="WelcomeButton" Content="Jasne!" HorizontalAlignment="Center" Margin="0,230,0,0" VerticalAlignment="Top" Opacity="0.595" Click="NavToMain"/>
 
     </Grid>
 </Page>

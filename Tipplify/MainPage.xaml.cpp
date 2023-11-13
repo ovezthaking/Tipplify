@@ -29,6 +29,18 @@ MainPage::MainPage()
 
 void Tipplify::MainPage::Button_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
-	greetingOutput->Text = "Hello, " + nameInput->Text + "!";
+	
 }
 
+
+
+void Tipplify::MainPage::TextBlock_SelectionChanged(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+
+}
+
+
+void Tipplify::MainPage::TextBlock_ManipulationCompleted(Platform::Object^ sender, Windows::UI::Xaml::Input::ManipulationCompletedRoutedEventArgs^ e)
+{
+
+}
