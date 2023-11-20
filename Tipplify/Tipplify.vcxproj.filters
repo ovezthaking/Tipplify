@@ -46,6 +46,9 @@
     <Image Include="Assets\champagnecocktail.jpg">
       <Filter>Assets</Filter>
     </Image>
+    <Image Include="Assets\mojito.png">
+      <Filter>Assets</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest" />
@@ -53,5 +56,6 @@
   <ItemGroup>
     <Page Include="MainPage.xaml" />
     <Page Include="WelcomePage.xaml" />
+    <Page Include="SelectionPage.xaml" />
   </ItemGroup>
 </Project>

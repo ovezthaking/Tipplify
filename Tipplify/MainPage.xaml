@@ -16,19 +16,9 @@
 
         <!-- Górna część strony -->
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="20">
-            <!-- Wyszukiwanie -->
-            <TextBox PlaceholderText="Wyszukaj..." Width="200" Margin="0,0,20,0"/>
-
-            <!-- Lista rzeczy -->
-            <ComboBox Width="200">
-
-                <ComboBoxItem Content="Champagne Cocktail"/>
-                <ComboBoxItem Content=""/>
-                <ComboBoxItem Content=""/>
-            </ComboBox>
 
             <!-- Przycisk do wyszukiwania -->
-            <Button Content="Szukaj" HorizontalAlignment="Left"/>
+            <Button Content="Powrót" HorizontalAlignment="Left" Click="NavToMain"/>
         </StackPanel>
 
         <!-- Dolna część strony -->
@@ -43,10 +33,10 @@
             <!-- Lewa kolumna -->
             <StackPanel Grid.Column="0" Grid.ColumnSpan="2" BorderBrush="#FF3B3838" BorderThickness="0,0,1,0">
 
-                <TextBlock Text="CHAMPAGNE COCKTAIL" FontSize="24" FontWeight="Bold" Margin="0,0,0,10" FontFamily="Comic Sans MS"/>
+                <TextBlock x:Name="Title" Text="CHAMPAGNE COCKTAIL" FontSize="24" FontWeight="Bold" Margin="0,0,0,10" FontFamily="Comic Sans MS" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
 
-                <Image Source="Assets\champagnecocktail.jpg" Width="454" Height="713" Margin="0,0,0,10"/>
+                <Image x:Name="Photo" Source="Assets\champagnecocktail.jpg" Width="454" Height="713" Margin="0,0,0,10"/>
             </StackPanel>
 
             <!-- Środkowa kolumna -->
@@ -60,7 +50,7 @@
 
                 <!-- Opis -->
                 <TextBlock Text="Opis:" FontSize="18" FontWeight="Bold" Margin="0,20,0,10"/>
-                <TextBlock TextWrapping="Wrap" Text="Kostkę cukru nasączamy angosturą i umieszczamy w kieliszku. Wlewamy na nią koniak, następnie powoli dodajemy szampan. Champagne cocktail  możemy ozdobić plastrem pomarańczy i wisienką koktajlową."/>
+                <TextBlock x:Name="Description" TextWrapping="Wrap" Text="Kostkę cukru nasączamy angosturą i umieszczamy w kieliszku. Wlewamy na nią koniak, następnie powoli dodajemy szampan. Champagne cocktail  możemy ozdobić plastrem pomarańczy i wisienką koktajlową."/>
             </StackPanel>
 
             <!-- Prawa kolumna -->

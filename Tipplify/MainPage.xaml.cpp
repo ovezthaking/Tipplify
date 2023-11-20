@@ -5,6 +5,7 @@
 
 #include "pch.h"
 #include "MainPage.xaml.h"
+#include "SelectionPage.xaml.h"
 
 using namespace Tipplify;
 
@@ -21,26 +22,22 @@ using namespace Windows::UI::Xaml::Navigation;
 
 //Szablon elementu Pusta strona jest udokumentowany na stronie https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x415
 
-MainPage::MainPage()
+
+
+Tipplify::MainPage::MainPage()
 {
-	InitializeComponent();
+    InitializeComponent();
 }
 
-
-void Tipplify::MainPage::Button_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+void Tipplify::MainPage::ChangeContent(Platform::String^ newDescription, Platform::String^ newTitle)
 {
-	
+    // Zmiana treści w MainPage
+    Description->Text = newDescription;
+    Title->Text = newTitle;
 }
 
-
-
-void Tipplify::MainPage::TextBlock_SelectionChanged(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+void Tipplify::MainPage::NavToMain(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
-
-}
-
-
-void Tipplify::MainPage::TextBlock_ManipulationCompleted(Platform::Object^ sender, Windows::UI::Xaml::Input::ManipulationCompletedRoutedEventArgs^ e)
-{
-
+    SelectionPage^ selectionpage = ref new SelectionPage();
+    Windows::UI::Xaml::Window::Current->Content = selectionpage;
 }

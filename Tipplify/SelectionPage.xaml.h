@@ -1,11 +1,11 @@
 ﻿//
-// WelcomePage.xaml.h
-// Deklaracja klasy WelcomePage
+// SelectionPage.xaml.h
+// Deklaracja klasy SelectionPage
 //
 
 #pragma once
 
-#include "WelcomePage.g.h"
+#include "SelectionPage.g.h"
 
 namespace Tipplify
 {
@@ -13,11 +13,12 @@ namespace Tipplify
 	/// Pusta strona, która może być używana samodzielnie lub do której można nawigować wewnątrz ramki.
 	/// </summary>
 	[Windows::Foundation::Metadata::WebHostHidden]
-	public ref class WelcomePage sealed
+	public ref class SelectionPage sealed
 	{
 	public:
-		WelcomePage();
+		SelectionPage();
 	private:
-		void NavToMain(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void ChangeContentButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		
 	};
 }

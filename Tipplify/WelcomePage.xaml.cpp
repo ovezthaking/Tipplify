@@ -5,8 +5,7 @@
 
 #include "pch.h"
 #include "WelcomePage.xaml.h"
-#include <MainPage.xaml.cpp>
-#include <MainPage.xaml.h>
+#include "SelectionPage.xaml.h"
 
 using namespace Tipplify;
 
@@ -29,14 +28,9 @@ WelcomePage::WelcomePage()
 }
 
 
-void Tipplify::WelcomePage::TextBlock_SelectionChanged(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
-{
-
-}
-
 
 void Tipplify::WelcomePage::NavToMain(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
-	MainPage^ mainpage = ref new MainPage();
-	Windows::UI::Xaml::Window::Current->Content = mainpage;
+	SelectionPage^ selectionpage = ref new SelectionPage();
+	Windows::UI::Xaml::Window::Current->Content = selectionpage;
 }
