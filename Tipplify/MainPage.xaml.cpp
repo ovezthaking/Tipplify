@@ -34,10 +34,12 @@ void Tipplify::MainPage::ChangeContent(Platform::String^ newDescription, Platfor
     // Zmiana treści w MainPage
     Description->Text = newDescription;
     Title->Text = newTitle;
+
 }
 
 void Tipplify::MainPage::NavToMain(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
+    //Przeniesienie użytkownika na stronę selekcji 
     SelectionPage^ selectionpage = ref new SelectionPage();
     Windows::UI::Xaml::Window::Current->Content = selectionpage;
 }

@@ -23,6 +23,7 @@ namespace Tipplify
 	private:
 		void ChangeContent(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void NavToMain(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		
 	};
 }
 

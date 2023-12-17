@@ -18,7 +18,9 @@ namespace Tipplify
 	public:
 		SelectionPage();
 	private:
-		void ChangeContentButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
-		
+		void ChangeRecipe(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+
+
+
 	};
 }

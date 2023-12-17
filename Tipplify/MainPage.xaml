@@ -33,7 +33,7 @@
             <!-- Lewa kolumna -->
             <StackPanel Grid.Column="0" Grid.ColumnSpan="2" BorderBrush="#FF3B3838" BorderThickness="0,0,1,0">
 
-                <TextBlock x:Name="Title" Text="CHAMPAGNE COCKTAIL" FontSize="24" FontWeight="Bold" Margin="0,0,0,10" FontFamily="Comic Sans MS" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock x:Name="Title" Text="NAZWA DRINKA" FontSize="24" FontWeight="Bold" Margin="0,0,0,10" FontFamily="Comic Sans MS" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
 
                 <Image x:Name="Photo" Source="Assets\champagnecocktail.jpg" Width="454" Height="713" Margin="0,0,0,10"/>

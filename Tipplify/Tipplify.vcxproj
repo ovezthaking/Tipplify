@@ -158,15 +158,49 @@
     <ClCompile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4453;28204</DisableSpecificWarnings>
+      <AdditionalIncludeDirectories>C:\Program Files\MySQL\Connector ODBC 8.2\include\jdbc;$(ProjectDir);$(GeneratedFilesDir);$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>STATIC_CONCPP;_UNICODE;UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>C:\Program Files\MySQL\Connector ODBC 8.2\lib64\vs14;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>mysqlcppconn-static.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/NODEFAULTLIB:MSVCRT %(AdditionalOptions)</AdditionalOptions>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4453;28204</DisableSpecificWarnings>
+      <AdditionalIncludeDirectories>C:\Program Files\MySQL\Connector ODBC 8.2\include\jdbc;$(ProjectDir);$(GeneratedFilesDir);$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>STATIC_CONCPP;_UNICODE;UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <CompileAsWinRT>true</CompileAsWinRT>
     </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>C:\Program Files\MySQL\Connector ODBC 8.2\lib64\vs14;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>C:\Program Files\MySQL\Connector ODBC 8.2\lib64\vs14\mysqlcppconn-static.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Lib\mysql\cppconn\build_config.h" />
+    <ClInclude Include="Lib\mysql\cppconn\callback.h" />
+    <ClInclude Include="Lib\mysql\cppconn\config.h" />
+    <ClInclude Include="Lib\mysql\cppconn\connection.h" />
+    <ClInclude Include="Lib\mysql\cppconn\datatype.h" />
+    <ClInclude Include="Lib\mysql\cppconn\driver.h" />
+    <ClInclude Include="Lib\mysql\cppconn\exception.h" />
+    <ClInclude Include="Lib\mysql\cppconn\metadata.h" />
+    <ClInclude Include="Lib\mysql\cppconn\parameter_metadata.h" />
+    <ClInclude Include="Lib\mysql\cppconn\prepared_statement.h" />
+    <ClInclude Include="Lib\mysql\cppconn\resultset.h" />
+    <ClInclude Include="Lib\mysql\cppconn\resultset_metadata.h" />
+    <ClInclude Include="Lib\mysql\cppconn\sqlstring.h" />
+    <ClInclude Include="Lib\mysql\cppconn\statement.h" />
+    <ClInclude Include="Lib\mysql\cppconn\variant.h" />
+    <ClInclude Include="Lib\mysql\cppconn\version_info.h" />
+    <ClInclude Include="Lib\mysql\cppconn\warning.h" />
+    <ClInclude Include="Lib\mysql\mysql_connection.h" />
+    <ClInclude Include="Lib\mysql\mysql_driver.h" />
+    <ClInclude Include="Lib\mysql\mysql_error.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="App.xaml.h">
       <DependentUpon>App.xaml</DependentUpon>
@@ -236,7 +270,15 @@
       <DependentUpon>WelcomePage.xaml</DependentUpon>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Lib\recipe.json" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

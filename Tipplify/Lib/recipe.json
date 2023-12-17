@@ -1,0 +1,28 @@
+{
+  "Mojito": {
+    "ingredients": [
+      "Lód",
+      "Limonka",
+      "Cukier",
+      "Miêta",
+      "Rum",
+      "Woda gazowana"
+    ],
+    "photo": "path/do/mojito.jpg",
+    "description": "Skruszyæ lód, limonkê wyszorowaæ, pokroiæ na æwiartki i wrzuciæ do szklanki typu highball/long drink. Zasypaæ cukrem i dok³adnie ugnieœæ. Nastêpnie dodaæ listki miêty i znowu ugnieœæ. Do po³owy wysokoœci szklanki dodaæ kruszony lód, a nastêpnie rum i znów lód (kruszony). Zamieszaæ. Na wierzch dodaæ wodê gazowan¹ i delikatnie zmieszaæ. Szklankê udekorowaæ limonk¹ i listkami miêty.",
+    "name": "Mojito"
+  },
+  "ChampagneCocktail": {
+    "ingredients": [
+      "Kostka cukru",
+      "Angostura",
+      "Koniak",
+      "Szampan",
+      "Plaster pomarañczy",
+      "Wisienka koktajlowa"
+    ],
+    "photo": "path/do/champagne_cocktail.jpg",
+    "description": "Kostkê cukru nas¹czamy angostur¹ i umieszczamy w kieliszku. Wlewamy na ni¹ koniak, nastêpnie powoli dodajemy szampan. Champagne cocktail mo¿emy ozdobiæ plastrem pomarañczy i wisienk¹ koktajlow¹.",
+    "name": "Champagne Cocktail"
+  }
+}

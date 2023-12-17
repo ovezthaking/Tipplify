@@ -8,6 +8,15 @@
       <UniqueIdentifier>de40c474-ad21-47e9-996b-edd0e476f2f6</UniqueIdentifier>
       <Extensions>bmp;fbx;gif;jpg;jpeg;tga;tiff;tif;png</Extensions>
     </Filter>
+    <Filter Include="Lib">
+      <UniqueIdentifier>{a663bb58-37be-4610-b991-fdf78927b41d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\mysql">
+      <UniqueIdentifier>{7268d881-0cf5-44e7-b6d6-dd95a8a82269}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\mysql\cppconn">
+      <UniqueIdentifier>{212574e1-fa5f-4362-b8d0-6ba2e5e1f075}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml" />
@@ -17,6 +26,66 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Lib\mysql\mysql_connection.h">
+      <Filter>Lib\mysql</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\mysql\mysql_driver.h">
+      <Filter>Lib\mysql</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\mysql\mysql_error.h">
+      <Filter>Lib\mysql</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\mysql\cppconn\build_config.h">
+      <Filter>Lib\mysql\cppconn</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\mysql\cppconn\callback.h">
+      <Filter>Lib\mysql\cppconn</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\mysql\cppconn\config.h">
+      <Filter>Lib\mysql\cppconn</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\mysql\cppconn\connection.h">
+      <Filter>Lib\mysql\cppconn</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\mysql\cppconn\datatype.h">
+      <Filter>Lib\mysql\cppconn</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\mysql\cppconn\driver.h">
+      <Filter>Lib\mysql\cppconn</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\mysql\cppconn\exception.h">
+      <Filter>Lib\mysql\cppconn</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\mysql\cppconn\metadata.h">
+      <Filter>Lib\mysql\cppconn</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\mysql\cppconn\parameter_metadata.h">
+      <Filter>Lib\mysql\cppconn</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\mysql\cppconn\prepared_statement.h">
+      <Filter>Lib\mysql\cppconn</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\mysql\cppconn\resultset.h">
+      <Filter>Lib\mysql\cppconn</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\mysql\cppconn\resultset_metadata.h">
+      <Filter>Lib\mysql\cppconn</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\mysql\cppconn\sqlstring.h">
+      <Filter>Lib\mysql\cppconn</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\mysql\cppconn\statement.h">
+      <Filter>Lib\mysql\cppconn</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\mysql\cppconn\variant.h">
+      <Filter>Lib\mysql\cppconn</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\mysql\cppconn\version_info.h">
+      <Filter>Lib\mysql\cppconn</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\mysql\cppconn\warning.h">
+      <Filter>Lib\mysql\cppconn</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\LockScreenLogo.scale-200.png">
@@ -57,5 +126,10 @@
     <Page Include="MainPage.xaml" />
     <Page Include="WelcomePage.xaml" />
     <Page Include="SelectionPage.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Lib\recipe.json">
+      <Filter>Lib</Filter>
+    </None>
   </ItemGroup>
 </Project>
