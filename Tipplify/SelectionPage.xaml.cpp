@@ -7,21 +7,24 @@
 #include "SelectionPage.xaml.h"
 #include "MainPage.xaml.h"
 #include "WelcomePage.xaml.h"
-
+#include <string>
+#include <fstream>
 
 #include <stdlib.h>
 #include <iostream>
-//#include <mysql_driver.h>
-//#include "mysql_connection.h"
-//#include <cppconn/driver.h>
-//#include <cppconn/exception.h>
-//#include <cppconn/prepared_statement.h>
-#include "Lib/mysql/cppconn/driver.h"
-#include "Lib/mysql/cppconn/exception.h"
-#include "Lib/mysql/cppconn/prepared_statement.h"
-#include "Lib/mysql/mysql_connection.h"
-#include <mysql_driver.h>
 
+
+#include <ppltasks.h>
+#include <collection.h>
+#include <sstream>
+#include <fstream>
+#include <ppl.h>
+
+
+
+
+using namespace Windows::Data::Json;
+using namespace concurrency;
 
 
 using namespace Tipplify;
@@ -35,6 +38,8 @@ using namespace Windows::UI::Xaml::Data;
 using namespace Windows::UI::Xaml::Input;
 using namespace Windows::UI::Xaml::Media;
 using namespace Windows::UI::Xaml::Navigation;
+using namespace Windows::Storage;
+using namespace Windows::Storage::Streams;
 
 //Szablon elementu Pusta strona jest udokumentowany na stronie https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -44,68 +49,10 @@ using namespace Windows::UI::Xaml::Navigation;
 Tipplify::SelectionPage::SelectionPage()
 {
     InitializeComponent();
-    /*
-    //BAZA DANYCH 
-    sql::Driver* driver = nullptr;
-    sql::Connection* con = nullptr;
-    const std::string server = "tcp://127.0.0.1:3306";
-    const std::string username = "ovez";
-    const std::string password = "oliwer1234";
-
-   
     
-      
-    try {
-        driver = sql::mysql::get_mysql_driver_instance(); //Przez tą linijkę ukazuje się błąd
-       // con = driver->connect(server, username, password);
-
-    }
-    catch (sql::SQLException e)
-    {
-        std::cout << "Could not connect to server. Error message: " << e.what() << std::endl;
-       
-    }
-
-
-    //BAZA DANYCH 
-    sql::Driver* driver = nullptr;
-    sql::Connection* con = nullptr;
-    const std::string server = "tcp://127.0.0.1:3306";
-    const std::string username = "ovez";
-    const std::string password = "oliwer1234";
-
-try{
-        //driver = sql::mysql::get_mysql_driver_instance(); //Przez tą linijkę ukazuje się błąd
-       // con = driver->connect(server, username, password);
-
-}
-catch (sql::SQLException e)
-{
-    std::cout << "Could not connect to server. Error message: " << e.what() << std::endl;
-    system("pause");
-    exit(1);
-}
-*/
-        
 }
 
-/*
-* 
-//* BAZA DANYCH MYSQL
-* 
-inline static void ConnectToDatabase()
-{
-    sql::mysql::MySQL_Driver* driver = nullptr;
-    sql::Connection* con = nullptr;
 
-    driver = sql::mysql::get_mysql_driver_instance();
-    con = driver->connect("tcp://127.0.0.1:3306", "username", "password");
-
-    
-
-    delete con;
-}
-*/
 
 void Tipplify::SelectionPage::ChangeRecipe(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
@@ -135,3 +82,96 @@ void Tipplify::SelectionPage::ChangeRecipe(Platform::Object^ sender, Windows::UI
         Windows::UI::Xaml::Window::Current->Content = mainpage;
     }
 }
+
+
+
+
+
+
+
+
+/*
+*
+//* BAZA DANYCH MYSQL
+*
+inline static void ConnectToDatabase()
+{
+    sql::mysql::MySQL_Driver* driver = nullptr;
+    sql::Connection* con = nullptr;
+
+    driver = sql::mysql::get_mysql_driver_instance();
+    con = driver->connect("tcp://127.0.0.1:3306", "username", "password");
+
+
+
+    delete con;
+}
+*/
+
+
+void Tipplify::SelectionPage::AddRecipe(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+    // Pobierz dane 
+    Platform::String^ name = NameTextBox->Text;
+    Platform::String^ description = DescriptionTextBox->Text;
+    Platform::String^ photoPath = PhotoPathTextBox->Text;
+    Platform::String^ ingredients = IngredientsTextBox->Text;
+
+    // Utwórz nowy obiekt JSON
+    JsonObject^ jsonObject = ref new JsonObject();
+
+    
+    jsonObject->Insert("name", JsonValue::CreateStringValue(name));
+    jsonObject->Insert("description", JsonValue::CreateStringValue(description));
+    jsonObject->Insert("photoPath", JsonValue::CreateStringValue(photoPath));
+    jsonObject->Insert("ingredients", JsonValue::CreateStringValue(ingredients));
+    
+
+    String^ jsonString = jsonObject->Stringify();
+
+    StorageFolder^ localFolder = ApplicationData::Current->LocalFolder;
+    
+
+    String^ filePath ="Lib" + "\\" + name + ".json";
+   
+    
+    // utwórz plij
+    create_task(localFolder->CreateFileAsync(filePath, CreationCollisionOption::GenerateUniqueName))
+        .then([jsonString](StorageFile^ file)
+            {
+                // Zapisywanie ciągu znaków JSON do istniejącego pliku (nadpisywanie)
+                return FileIO::WriteTextAsync(file, jsonString);
+            })
+        .then([](task<void> previousTask)
+            {
+                try
+                {
+                    // Obsługa błędów, jeśli wystąpiły
+                    previousTask.get();
+                    
+                    
+                }
+                catch (Exception^ ex)
+                {
+                    OutputDebugStringW(L"Error during file writing: ");
+                    OutputDebugStringW(ex->Message->Data());
+                    // Obsługa błędów podczas zapisu
+                    
+                }
+            });
+
+
+
+    
+
+ 
+
+ 
+
+    // Wyczyszczenie TextBox-ów po dodaniu przepisu
+    NameTextBox->Text = filePath;
+    DescriptionTextBox->Text = "";
+    PhotoPathTextBox->Text = "";
+    IngredientsTextBox->Text = "";
+}
+
