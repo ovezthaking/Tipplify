@@ -54,6 +54,8 @@ Tipplify::SelectionPage::SelectionPage()
 
 
 
+
+
 void Tipplify::SelectionPage::ChangeRecipe(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
     
@@ -109,6 +111,22 @@ inline static void ConnectToDatabase()
 */
 
 
+void Tipplify::SelectionPage::ExpandRecipe_click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+    if (RecipeAdditionPanel->Visibility == Windows::UI::Xaml::Visibility::Collapsed)
+    {
+        // Panel jest obecnie zwinięty, więc rozwijamy go
+        RecipeAdditionPanel->Visibility = Windows::UI::Xaml::Visibility::Visible;
+        ToggleRecipeAddition->Content = "Schowaj";
+    }
+    else
+    {
+        // Panel jest obecnie rozwinięty, więc zwijamy go
+        RecipeAdditionPanel->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+        ToggleRecipeAddition->Content = "Dodaj drink";
+    }
+}
+
 void Tipplify::SelectionPage::AddRecipe(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
     // Pobierz dane 
@@ -136,7 +154,7 @@ void Tipplify::SelectionPage::AddRecipe(Platform::Object^ sender, Windows::UI::X
    
     
     // utwórz plij
-    create_task(localFolder->CreateFileAsync(filePath, CreationCollisionOption::GenerateUniqueName))
+    create_task(localFolder->CreateFileAsync(filePath, CreationCollisionOption::GenerateUniqueName)) 
         .then([jsonString](StorageFile^ file)
             {
                 // Zapisywanie ciągu znaków JSON do istniejącego pliku (nadpisywanie)
@@ -169,9 +187,12 @@ void Tipplify::SelectionPage::AddRecipe(Platform::Object^ sender, Windows::UI::X
  
 
     // Wyczyszczenie TextBox-ów po dodaniu przepisu
-    NameTextBox->Text = filePath;
+    NameTextBox->Text = localFolder->Path + filePath;
     DescriptionTextBox->Text = "";
     PhotoPathTextBox->Text = "";
     IngredientsTextBox->Text = "";
 }
+
+
+
 

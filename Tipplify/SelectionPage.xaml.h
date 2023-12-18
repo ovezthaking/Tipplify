@@ -23,5 +23,6 @@ namespace Tipplify
 
 
 		void AddRecipe(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void ExpandRecipe_click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 	};
 }

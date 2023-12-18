@@ -271,6 +271,8 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\recipes\Champagne Cocktail.json" />
+    <None Include="Assets\recipes\Mojito.json" />
     <None Include="Lib\recipe.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

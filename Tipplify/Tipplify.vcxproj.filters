@@ -17,6 +17,9 @@
     <Filter Include="Lib\mysql\cppconn">
       <UniqueIdentifier>{212574e1-fa5f-4362-b8d0-6ba2e5e1f075}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Assets\recipes">
+      <UniqueIdentifier>{9fc4c7c8-4123-4d66-85e5-6c239b1c1d39}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml" />
@@ -130,6 +133,12 @@
   <ItemGroup>
     <None Include="Lib\recipe.json">
       <Filter>Lib</Filter>
+    </None>
+    <None Include="Assets\recipes\Champagne Cocktail.json">
+      <Filter>Assets\recipes</Filter>
+    </None>
+    <None Include="Assets\recipes\Mojito.json">
+      <Filter>Assets\recipes</Filter>
     </None>
   </ItemGroup>
 </Project>

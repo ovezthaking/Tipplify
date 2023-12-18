@@ -7,14 +7,24 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
     <Grid>
-        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top">
-            <TextBox x:Name="NameTextBox" PlaceholderText="Name" />
-            <TextBox x:Name="DescriptionTextBox" PlaceholderText="Description" Height="138" Width="641" />
-            <TextBox x:Name="PhotoPathTextBox" PlaceholderText="Photo Path" />
-            <TextBox x:Name="IngredientsTextBox" PlaceholderText="Ingredients" />
-            <Button Content="Add Recipe" Click="AddRecipe" />
-        </StackPanel>
+        <!-- Panel do dodawania przepisów -->
+        <Grid x:Name="RecipeAdditionPanel" Height="Auto" Visibility="Collapsed" Background="LightGray" Opacity="0.9">
+            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="RecipeAddition">
+                <TextBox x:Name="NameTextBox" PlaceholderText="Name" />
+                <TextBox x:Name="DescriptionTextBox" PlaceholderText="Description" Height="138" Width="641" />
+                <TextBox x:Name="PhotoPathTextBox" PlaceholderText="Photo Path" />
+                <TextBox x:Name="IngredientsTextBox" PlaceholderText="Ingredients" />
+                <Button Content="Add Recipe" Click="AddRecipe" />
+            </StackPanel>
+            
+        </Grid>
+
+        <!-- Przycisk do rozwijania i zwijania panelu -->
+        <ToggleButton x:Name="ToggleRecipeAddition" Content="Dodaj przepis" HorizontalAlignment="Right" VerticalAlignment="Top" Click="ExpandRecipe_click" />
+
+        <!-- Panel z przepisami -->
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button Content="Champagne Cocktail" Click="ChangeRecipe"/>
             <Button Content="Mojito" Click="ChangeRecipe"/>
