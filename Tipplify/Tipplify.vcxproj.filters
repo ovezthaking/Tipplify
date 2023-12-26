@@ -140,5 +140,8 @@
     <None Include="Assets\recipes\Mojito.json">
       <Filter>Assets\recipes</Filter>
     </None>
+    <None Include="Assets\recipes\Daiquiri.json">
+      <Filter>Assets\recipes</Filter>
+    </None>
   </ItemGroup>
 </Project>

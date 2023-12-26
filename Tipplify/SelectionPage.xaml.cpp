@@ -20,6 +20,10 @@
 #include <fstream>
 #include <ppl.h>
 
+#include <Windows.Security.Cryptography.h>
+#include <Windows.Storage.Streams.h>
+using namespace Platform::Collections;
+
 
 
 
@@ -54,12 +58,13 @@ Tipplify::SelectionPage::SelectionPage()
 
 
 
-
+// LAST SAVE
 
 void Tipplify::SelectionPage::ChangeRecipe(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
     
     Button^ clickedButton = dynamic_cast<Button^>(sender);
+    
     if (clickedButton != nullptr)
     {
         MainPage^ mainpage = ref new MainPage();
@@ -75,7 +80,7 @@ void Tipplify::SelectionPage::ChangeRecipe(Platform::Object^ sender, Windows::UI
         {
             mainpage->ChangeContent("Skruszyć lód, limonkę wyszorować, pokroić na ćwiartki i wrzucić do szklanki typu highball/long drink Zasypać cukrem i dokładnie ugnieść. Następnie dodać listki mięty i znowu ugnieść. Do połowy wysokości szklanki dodać kruszony lód, a następnie rum i znów lód (kruszony). Zamieszać. Na wierzch dodać wodę gazowaną i delikatnie zmieszać. Szklankę udekorować limonką i listkami mięty.", "Mojito");
         }
-
+        
 
 
 
@@ -133,7 +138,22 @@ void Tipplify::SelectionPage::AddRecipe(Platform::Object^ sender, Windows::UI::X
     Platform::String^ name = NameTextBox->Text;
     Platform::String^ description = DescriptionTextBox->Text;
     Platform::String^ photoPath = PhotoPathTextBox->Text;
-    Platform::String^ ingredients = IngredientsTextBox->Text;
+    Platform::String^ ingredientsText = IngredientsTextBox->Text;
+
+    Vector<Platform::String^>^ ingredientsVector = ref new Vector<Platform::String^>();
+
+    // Dzielenie tekstu na składniki
+
+    std::wstring ingredientsWStr = ingredientsText->Data();
+    std::wstringstream wss(ingredientsWStr);
+    std::wstring ingredient;
+    while (std::getline(wss, ingredient, L','))
+    {
+        ingredientsVector->Append(ref new Platform::String(ingredient.c_str()));
+    }
+
+
+
 
     // Utwórz nowy obiekt JSON
     JsonObject^ jsonObject = ref new JsonObject();
@@ -142,7 +162,17 @@ void Tipplify::SelectionPage::AddRecipe(Platform::Object^ sender, Windows::UI::X
     jsonObject->Insert("name", JsonValue::CreateStringValue(name));
     jsonObject->Insert("description", JsonValue::CreateStringValue(description));
     jsonObject->Insert("photoPath", JsonValue::CreateStringValue(photoPath));
-    jsonObject->Insert("ingredients", JsonValue::CreateStringValue(ingredients));
+    
+
+    // Utwórz tablicę JSON z wektora składników
+    JsonArray^ ingredientsJsonArray = ref new JsonArray();
+    for (Platform::String^ ingredient : ingredientsVector)
+    {
+        ingredientsJsonArray->Append(JsonValue::CreateStringValue(ingredient));
+    }
+
+    jsonObject->Insert("ingredients", ingredientsJsonArray);
+
     
 
     String^ jsonString = jsonObject->Stringify();
@@ -150,7 +180,7 @@ void Tipplify::SelectionPage::AddRecipe(Platform::Object^ sender, Windows::UI::X
     StorageFolder^ localFolder = ApplicationData::Current->LocalFolder;
     
 
-    String^ filePath ="Lib" + "\\" + name + ".json";
+    String^ filePath ="Assets" + "\\" + "recipes" + "\\" + name + ".json";
    
     
     // utwórz plij
@@ -186,8 +216,8 @@ void Tipplify::SelectionPage::AddRecipe(Platform::Object^ sender, Windows::UI::X
 
  
 
-    // Wyczyszczenie TextBox-ów po dodaniu przepisu
-    NameTextBox->Text = localFolder->Path + filePath;
+    // Wyczyszczenie TextBoxów po dodaniu przepisu
+    NameTextBox->Text = localFolder->Path + filePath; //TEMPORARY: SCEIZKA STWORZONEGO PLIKU W NAMETEXTBOXIE
     DescriptionTextBox->Text = "";
     PhotoPathTextBox->Text = "";
     IngredientsTextBox->Text = "";

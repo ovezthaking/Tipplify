@@ -272,6 +272,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\recipes\Champagne Cocktail.json" />
+    <None Include="Assets\recipes\Daiquiri.json" />
     <None Include="Assets\recipes\Mojito.json" />
     <None Include="Lib\recipe.json" />
   </ItemGroup>

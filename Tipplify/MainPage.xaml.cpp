@@ -34,6 +34,7 @@ void Tipplify::MainPage::ChangeContent(Platform::String^ newDescription, Platfor
     // Zmiana treści w MainPage
     Description->Text = newDescription;
     Title->Text = newTitle;
+    
 
 }
 
