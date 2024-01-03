@@ -25,9 +25,10 @@
         <ToggleButton x:Name="ToggleRecipeAddition" Content="Dodaj przepis" HorizontalAlignment="Right" VerticalAlignment="Top" Click="ExpandRecipe_click" />
 
         <!-- Panel z przepisami -->
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Content="Champagne Cocktail" Click="ChangeRecipe"/>
-            <Button Content="Mojito" Click="ChangeRecipe"/>
-        </StackPanel>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Name="RecipeList" Margin="0,100,0,0" >
+                <Button Content="Champagne Cocktail" Click="ChangeRecipe"/>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>

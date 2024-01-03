@@ -49,22 +49,144 @@ using namespace Windows::Storage::Streams;
 
 
 
-
 Tipplify::SelectionPage::SelectionPage()
 {
     InitializeComponent();
-    
+    LoadRecipes(); // Wczytaj przepisy przy tworzeniu strony
 }
 
 
 
 // LAST SAVE
+void Tipplify::SelectionPage::LoadRecipes()
+{
+    StorageFolder^ localFolder = ApplicationData::Current->LocalFolder;
+    Platform::String^ recipesFolderPath = "Assets\\recipes";
+
+    // Uzyskaj dostęp do folderu z przepisami
+    create_task(localFolder->GetFolderAsync(recipesFolderPath))
+        .then([this](StorageFolder^ recipesFolder)
+            {
+                // Pobierz wszystkie pliki .json w folderze
+                return create_task(recipesFolder->GetFilesAsync())
+                    .then([this](IVectorView<StorageFile^>^ files)
+                        {
+                            // Przeszukaj każdy plik .json i wczytaj przepis
+                            for (StorageFile^ file : files)
+                            {
+                                create_task(FileIO::ReadTextAsync(file))
+                                    .then([this, file](String^ content)
+                                        {
+                                            // Wczytaj przepis z pliku .json (tu trzeba dostosować do Twoich potrzeb)
+                                            ParseAndHandleRecipe(content);
+                                        });
+                            }
+                        });
+            })
+        .then([](task<void> previousTask)
+            {
+                try
+                {
+                    // Obsługa błędów, jeśli wystąpiły
+                    previousTask.get();
+                }
+                catch (Exception^ ex)
+                {
+                    OutputDebugStringW(L"Error during recipe loading: ");
+                    OutputDebugStringW(ex->Message->Data());
+                    // Obsługa błędów podczas wczytywania przepisów
+                }
+            });
+}
+
+void Tipplify::SelectionPage::ParseAndHandleRecipe(String^ jsonContent)
+{
+    try
+    {
+        JsonObject^ jsonObject = JsonObject::Parse(jsonContent);
+
+        if (jsonObject->HasKey("name") && jsonObject->HasKey("description") &&
+            jsonObject->HasKey("photoPath") && jsonObject->HasKey("ingredients"))
+        {
+            // Pobierz dane z obiektu JSON
+            String^ name = jsonObject->GetNamedString("name");
+            String^ description = jsonObject->GetNamedString("description");
+            String^ photoPath = jsonObject->GetNamedString("photoPath");
+            JsonArray^ ingredientsJsonArray = jsonObject->GetNamedArray("ingredients");
+
+            // Przetwórz składniki z tablicy JSON
+            Vector<String^>^ ingredientsVector = ref new Vector<String^>();
+            for (IJsonValue^ ingredientJsonValue : ingredientsJsonArray)
+            {
+                if (ingredientJsonValue->ValueType == JsonValueType::String)
+                {
+                    String^ ingredient = ingredientJsonValue->GetString();
+                    ingredientsVector->Append(ingredient);
+                }
+            }
+
+            // Tutaj możesz użyć danych przepisu do własnej logiki biznesowej
+            // Na przykład, utwórz obiekt przepisu, dodaj go do listy przepisów itp.
+
+            // Przykład wypisywania danych na konsolę
+
+           
+
+            // Tworzenie przycisku
+            Button^ recipeButton = ref new Button();
+            recipeButton->Content = name; // Ustaw nazwę przycisku na nazwę przepisu
+            recipeButton->Click += ref new RoutedEventHandler(this, &Tipplify::SelectionPage::ChangeRecipe);
+
+
+            // Dodaj przycisk do kontenera na przyciski (na przykład, Grid lub StackPanel)
+            RecipeList->Children->Append(recipeButton);
+
+
+            OutputDebugStringW(L"Recipe Name: ");
+            OutputDebugStringW(name->Data());
+            OutputDebugStringW(L"\n");
+
+            OutputDebugStringW(L"Description: ");
+            OutputDebugStringW(description->Data());
+            OutputDebugStringW(L"\n");
+
+            OutputDebugStringW(L"Photo Path: ");
+            OutputDebugStringW(photoPath->Data());
+            OutputDebugStringW(L"\n");
+
+            OutputDebugStringW(L"Ingredients:\n");
+            for (String^ ingredient : ingredientsVector)
+            {
+                OutputDebugStringW(L" - ");
+                OutputDebugStringW(ingredient->Data());
+                OutputDebugStringW(L"\n");
+            }
+
+            // Tutaj możesz dodać własną logikę obsługi przepisu
+
+
+        }
+        else
+        {
+            // Obsługa błędów braku wymaganych kluczy w JSON
+            OutputDebugStringW(L"Error: Invalid JSON structure - missing required keys.\n");
+        }
+    }
+    catch (Exception^ ex)
+    {
+        // Obsługa błędów parsowania JSON
+        OutputDebugStringW(L"Error during JSON parsing: ");
+        OutputDebugStringW(ex->Message->Data());
+        OutputDebugStringW(L"\n");
+    }
+}
 
 void Tipplify::SelectionPage::ChangeRecipe(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
-    
+
+
     Button^ clickedButton = dynamic_cast<Button^>(sender);
-    
+
     if (clickedButton != nullptr)
     {
         MainPage^ mainpage = ref new MainPage();
@@ -73,14 +195,14 @@ void Tipplify::SelectionPage::ChangeRecipe(Platform::Object^ sender, Windows::UI
         if (clickedButton->Content->ToString() == "Champagne Cocktail")
         {
             mainpage->ChangeContent("Kostkę cukru nasączamy angosturą i umieszczamy w kieliszku. Wlewamy na nią koniak, następnie powoli dodajemy szampan. Champagne cocktail  możemy ozdobić plastrem pomarańczy i wisienką koktajlową.", "Champagne Cocktail");
-            
+
         }
         // Jeżeli drugi przycisk został kliknięty
         else if (clickedButton->Content->ToString() == "Mojito")
         {
             mainpage->ChangeContent("Skruszyć lód, limonkę wyszorować, pokroić na ćwiartki i wrzucić do szklanki typu highball/long drink Zasypać cukrem i dokładnie ugnieść. Następnie dodać listki mięty i znowu ugnieść. Do połowy wysokości szklanki dodać kruszony lód, a następnie rum i znów lód (kruszony). Zamieszać. Na wierzch dodać wodę gazowaną i delikatnie zmieszać. Szklankę udekorować limonką i listkami mięty.", "Mojito");
         }
-        
+
 
 
 
@@ -89,6 +211,7 @@ void Tipplify::SelectionPage::ChangeRecipe(Platform::Object^ sender, Windows::UI
         Windows::UI::Xaml::Window::Current->Content = mainpage;
     }
 }
+
 
 
 
@@ -217,10 +340,19 @@ void Tipplify::SelectionPage::AddRecipe(Platform::Object^ sender, Windows::UI::X
  
 
     // Wyczyszczenie TextBoxów po dodaniu przepisu
-    NameTextBox->Text = localFolder->Path + filePath; //TEMPORARY: SCEIZKA STWORZONEGO PLIKU W NAMETEXTBOXIE
-    DescriptionTextBox->Text = "";
+    NameTextBox->Text = "";
+    DescriptionTextBox->Text = localFolder->Path + filePath; //TEMPORARY: SCEIZKA STWORZONEGO PLIKU W NAMETEXTBOXIE
     PhotoPathTextBox->Text = "";
     IngredientsTextBox->Text = "";
+
+    // Tworzenie przycisku
+    Button^ recipeButton = ref new Button();
+    recipeButton->Content = name; // Ustaw nazwę przycisku na nazwę przepisu
+    recipeButton->Click += ref new RoutedEventHandler(this, &Tipplify::SelectionPage::ChangeRecipe);
+
+    // Dodaj przycisk do kontenera na przyciski (na przykład, Grid lub StackPanel)
+    RecipeList->Children->Append(recipeButton);
+    
 }
 
 
