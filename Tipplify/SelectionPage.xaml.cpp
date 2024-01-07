@@ -9,28 +9,21 @@
 #include "WelcomePage.xaml.h"
 #include <string>
 #include <fstream>
-
 #include <stdlib.h>
 #include <iostream>
-
-
+#include <Windows.h>
+#include <windows.ui.xaml.media.dxinterop.h>
 #include <ppltasks.h>
 #include <collection.h>
 #include <sstream>
 #include <fstream>
 #include <ppl.h>
-
 #include <Windows.Security.Cryptography.h>
 #include <Windows.Storage.Streams.h>
+
 using namespace Platform::Collections;
-
-
-
-
 using namespace Windows::Data::Json;
 using namespace concurrency;
-
-
 using namespace Tipplify;
 using namespace Platform;
 using namespace Windows::Foundation;
@@ -47,13 +40,16 @@ using namespace Windows::Storage::Streams;
 
 //Szablon elementu Pusta strona jest udokumentowany na stronie https://go.microsoft.com/fwlink/?LinkId=234238
 
-
+    
 
 Tipplify::SelectionPage::SelectionPage()
 {
     InitializeComponent();
     LoadRecipes(); // Wczytaj przepisy przy tworzeniu strony
 }
+
+
+
 
 
 
@@ -71,13 +67,14 @@ void Tipplify::SelectionPage::LoadRecipes()
                 return create_task(recipesFolder->GetFilesAsync())
                     .then([this](IVectorView<StorageFile^>^ files)
                         {
+                            parsedRecipes = ref new Platform::Collections::Vector<Recipe^>();
                             // Przeszukaj każdy plik .json i wczytaj przepis
                             for (StorageFile^ file : files)
                             {
                                 create_task(FileIO::ReadTextAsync(file))
                                     .then([this, file](String^ content)
                                         {
-                                            // Wczytaj przepis z pliku .json (tu trzeba dostosować do Twoich potrzeb)
+                                            // Wczytaj przepis z pliku .json 
                                             ParseAndHandleRecipe(content);
                                         });
                             }
@@ -135,8 +132,9 @@ void Tipplify::SelectionPage::ParseAndHandleRecipe(String^ jsonContent)
             // Tworzenie przycisku
             Button^ recipeButton = ref new Button();
             recipeButton->Content = name; // Ustaw nazwę przycisku na nazwę przepisu
+            recipeButton->Margin = 0, 0, 0, 0;
             recipeButton->Click += ref new RoutedEventHandler(this, &Tipplify::SelectionPage::ChangeRecipe);
-
+            
 
             // Dodaj przycisk do kontenera na przyciski (na przykład, Grid lub StackPanel)
             RecipeList->Children->Append(recipeButton);
@@ -163,8 +161,10 @@ void Tipplify::SelectionPage::ParseAndHandleRecipe(String^ jsonContent)
             }
 
             // Tutaj możesz dodać własną logikę obsługi przepisu
-
-
+            Recipe^ recipe = ref new Recipe();
+            recipe->Name = name;
+            recipe->Description = description;
+            parsedRecipes->Append(recipe);
         }
         else
         {
@@ -180,6 +180,8 @@ void Tipplify::SelectionPage::ParseAndHandleRecipe(String^ jsonContent)
         OutputDebugStringW(L"\n");
     }
 }
+/*
+//STARA FUNKCJA 
 
 void Tipplify::SelectionPage::ChangeRecipe(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
@@ -190,7 +192,7 @@ void Tipplify::SelectionPage::ChangeRecipe(Platform::Object^ sender, Windows::UI
     if (clickedButton != nullptr)
     {
         MainPage^ mainpage = ref new MainPage();
-
+        Recipe^ selectedRecipe = nullptr;
         // Jeżeli pierwszy przycisk został kliknięty
         if (clickedButton->Content->ToString() == "Champagne Cocktail")
         {
@@ -202,13 +204,51 @@ void Tipplify::SelectionPage::ChangeRecipe(Platform::Object^ sender, Windows::UI
         {
             mainpage->ChangeContent("Skruszyć lód, limonkę wyszorować, pokroić na ćwiartki i wrzucić do szklanki typu highball/long drink Zasypać cukrem i dokładnie ugnieść. Następnie dodać listki mięty i znowu ugnieść. Do połowy wysokości szklanki dodać kruszony lód, a następnie rum i znów lód (kruszony). Zamieszać. Na wierzch dodać wodę gazowaną i delikatnie zmieszać. Szklankę udekorować limonką i listkami mięty.", "Mojito");
         }
-
-
-
+        
+        for (Recipe^ recipe : )
+        {
+            
+        }
+        
 
 
         // Przeniesienie użytkownika na stronę główną
         Windows::UI::Xaml::Window::Current->Content = mainpage;
+    }
+}
+*/
+
+void Tipplify::SelectionPage::ChangeRecipe(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+    Button^ clickedButton = dynamic_cast<Button^>(sender);
+
+    if (clickedButton != nullptr)
+    {
+        Platform::String^ recipeName = clickedButton->Content->ToString();
+        Recipe^ selectedRecipe = nullptr;
+
+        for (Recipe^ recipe : parsedRecipes)
+        {
+            if (clickedButton->Content->ToString() == "Champagne Cocktail")
+            {
+                selectedRecipe = recipe;
+                selectedRecipe->Name = "Champagne Cocktail";
+                selectedRecipe->Description = "Kostkę cukru nasączamy angosturą i umieszczamy w kieliszku. Wlewamy na nią koniak, następnie powoli dodajemy szampan. Champagne cocktail  możemy ozdobić plastrem pomarańczy i wisienką koktajlową.";
+            }
+            else if
+                (recipe->Name == recipeName)
+            {
+                selectedRecipe = recipe;
+                break;
+            }
+        }
+
+        if (selectedRecipe != nullptr)
+        {
+            MainPage^ mainpage = ref new MainPage();
+            mainpage->ChangeContent(selectedRecipe->Description, selectedRecipe->Name);
+            Windows::UI::Xaml::Window::Current->Content = mainpage;
+        }
     }
 }
 
@@ -255,6 +295,22 @@ void Tipplify::SelectionPage::ExpandRecipe_click(Platform::Object^ sender, Windo
     }
 }
 
+void RefreshPage()
+{
+    // Utwórz nową instancję SelectionPage.xaml
+    SelectionPage^ newSelectionPage = ref new SelectionPage();
+
+    // Pobierz bieżący Content
+    UIElement^ currentContent = Window::Current->Content;
+
+    // Zastąp obecny Content nową instancją SelectionPage
+    Window::Current->Content = newSelectionPage;
+
+    // Usuń obecną stronę (jeśli była)
+    delete currentContent;
+
+}
+
 void Tipplify::SelectionPage::AddRecipe(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
     // Pobierz dane 
@@ -281,11 +337,11 @@ void Tipplify::SelectionPage::AddRecipe(Platform::Object^ sender, Windows::UI::X
     // Utwórz nowy obiekt JSON
     JsonObject^ jsonObject = ref new JsonObject();
 
-    
+
     jsonObject->Insert("name", JsonValue::CreateStringValue(name));
     jsonObject->Insert("description", JsonValue::CreateStringValue(description));
     jsonObject->Insert("photoPath", JsonValue::CreateStringValue(photoPath));
-    
+
 
     // Utwórz tablicę JSON z wektora składników
     JsonArray^ ingredientsJsonArray = ref new JsonArray();
@@ -296,18 +352,18 @@ void Tipplify::SelectionPage::AddRecipe(Platform::Object^ sender, Windows::UI::X
 
     jsonObject->Insert("ingredients", ingredientsJsonArray);
 
-    
+
 
     String^ jsonString = jsonObject->Stringify();
 
     StorageFolder^ localFolder = ApplicationData::Current->LocalFolder;
-    
 
-    String^ filePath ="Assets" + "\\" + "recipes" + "\\" + name + ".json";
-   
-    
+
+    String^ filePath = "Assets" + "\\" + "recipes" + "\\" + name + ".json";
+
+
     // utwórz plij
-    create_task(localFolder->CreateFileAsync(filePath, CreationCollisionOption::GenerateUniqueName)) 
+    create_task(localFolder->CreateFileAsync(filePath, CreationCollisionOption::GenerateUniqueName))
         .then([jsonString](StorageFile^ file)
             {
                 // Zapisywanie ciągu znaków JSON do istniejącego pliku (nadpisywanie)
@@ -319,42 +375,49 @@ void Tipplify::SelectionPage::AddRecipe(Platform::Object^ sender, Windows::UI::X
                 {
                     // Obsługa błędów, jeśli wystąpiły
                     previousTask.get();
-                    
-                    
+
+
                 }
                 catch (Exception^ ex)
                 {
                     OutputDebugStringW(L"Error during file writing: ");
                     OutputDebugStringW(ex->Message->Data());
                     // Obsługa błędów podczas zapisu
-                    
+
                 }
             });
 
 
 
-    
 
- 
 
- 
 
-    // Wyczyszczenie TextBoxów po dodaniu przepisu
-    NameTextBox->Text = "";
-    DescriptionTextBox->Text = localFolder->Path + filePath; //TEMPORARY: SCEIZKA STWORZONEGO PLIKU W NAMETEXTBOXIE
-    PhotoPathTextBox->Text = "";
-    IngredientsTextBox->Text = "";
 
-    // Tworzenie przycisku
-    Button^ recipeButton = ref new Button();
-    recipeButton->Content = name; // Ustaw nazwę przycisku na nazwę przepisu
-    recipeButton->Click += ref new RoutedEventHandler(this, &Tipplify::SelectionPage::ChangeRecipe);
 
-    // Dodaj przycisk do kontenera na przyciski (na przykład, Grid lub StackPanel)
-    RecipeList->Children->Append(recipeButton);
-    
+
+            // Wyczyszczenie TextBoxów po dodaniu przepisu
+            NameTextBox->Text = "";
+            DescriptionTextBox->Text = localFolder->Path + filePath; //TEMPORARY: SCEIZKA STWORZONEGO PLIKU W NAMETEXTBOXIE
+            PhotoPathTextBox->Text = "";
+            IngredientsTextBox->Text = "";
+
+            // Tworzenie przycisku
+            Button^ recipeButton = ref new Button();
+            recipeButton->Content = name; // Ustaw nazwę przycisku na nazwę przepisu
+            recipeButton->Click += ref new RoutedEventHandler(this, &Tipplify::SelectionPage::ChangeRecipe);
+
+            // Dodaj przycisk do kontenera na przyciski (na przykład, Grid lub StackPanel)
+            RecipeList->Children->Append(recipeButton);
+            RefreshPage();
 }
 
 
 
 
+
+
+
+void Tipplify::SelectionPage::ScrollViewer_ViewChanged(Platform::Object^ sender, Windows::UI::Xaml::Controls::ScrollViewerViewChangedEventArgs^ e)
+{
+
+}
