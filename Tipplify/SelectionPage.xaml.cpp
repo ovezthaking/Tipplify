@@ -113,12 +113,14 @@ void Tipplify::SelectionPage::ParseAndHandleRecipe(String^ jsonContent)
 
             // Przetwórz składniki z tablicy JSON
             Vector<String^>^ ingredientsVector = ref new Vector<String^>();
+            String^ ingredientsString = "";
             for (IJsonValue^ ingredientJsonValue : ingredientsJsonArray)
             {
                 if (ingredientJsonValue->ValueType == JsonValueType::String)
                 {
                     String^ ingredient = ingredientJsonValue->GetString();
                     ingredientsVector->Append(ingredient);
+                    ingredientsString += ingredient + "\n";
                 }
             }
 
@@ -164,6 +166,8 @@ void Tipplify::SelectionPage::ParseAndHandleRecipe(String^ jsonContent)
             Recipe^ recipe = ref new Recipe();
             recipe->Name = name;
             recipe->Description = description;
+            recipe->Ingredients = ingredientsString;
+            recipe->PhotoPath = photoPath;
             parsedRecipes->Append(recipe);
         }
         else
@@ -229,14 +233,7 @@ void Tipplify::SelectionPage::ChangeRecipe(Platform::Object^ sender, Windows::UI
 
         for (Recipe^ recipe : parsedRecipes)
         {
-            if (clickedButton->Content->ToString() == "Champagne Cocktail")
-            {
-                selectedRecipe = recipe;
-                selectedRecipe->Name = "Champagne Cocktail";
-                selectedRecipe->Description = "Kostkę cukru nasączamy angosturą i umieszczamy w kieliszku. Wlewamy na nią koniak, następnie powoli dodajemy szampan. Champagne cocktail  możemy ozdobić plastrem pomarańczy i wisienką koktajlową.";
-            }
-            else if
-                (recipe->Name == recipeName)
+            if (recipe->Name == recipeName)
             {
                 selectedRecipe = recipe;
                 break;
@@ -246,7 +243,7 @@ void Tipplify::SelectionPage::ChangeRecipe(Platform::Object^ sender, Windows::UI
         if (selectedRecipe != nullptr)
         {
             MainPage^ mainpage = ref new MainPage();
-            mainpage->ChangeContent(selectedRecipe->Description, selectedRecipe->Name);
+            mainpage->ChangeContent(selectedRecipe->Description, selectedRecipe->Name, selectedRecipe->Ingredients, selectedRecipe->PhotoPath);
             Windows::UI::Xaml::Window::Current->Content = mainpage;
         }
     }

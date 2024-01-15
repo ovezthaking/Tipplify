@@ -121,6 +121,39 @@
     <Image Include="Assets\mojito.png">
       <Filter>Assets</Filter>
     </Image>
+    <Image Include="Assets\caipirinha.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\blue_lagoon.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\cosmopolitan.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\mai_tai.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\margarita.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\martini.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\negroni.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\pina_colada.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\sex_on_the_beach.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\tom_collins.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\wsour.png">
+      <Filter>Assets</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest" />
@@ -141,6 +174,39 @@
       <Filter>Assets\recipes</Filter>
     </None>
     <None Include="Assets\recipes\Daiquiri.json">
+      <Filter>Assets\recipes</Filter>
+    </None>
+    <None Include="Assets\recipes\Blue Lagoon.json">
+      <Filter>Assets\recipes</Filter>
+    </None>
+    <None Include="Assets\recipes\Caipirinha.json">
+      <Filter>Assets\recipes</Filter>
+    </None>
+    <None Include="Assets\recipes\Cosmopolitan.json">
+      <Filter>Assets\recipes</Filter>
+    </None>
+    <None Include="Assets\recipes\Mai Tai.json">
+      <Filter>Assets\recipes</Filter>
+    </None>
+    <None Include="Assets\recipes\Margarita.json">
+      <Filter>Assets\recipes</Filter>
+    </None>
+    <None Include="Assets\recipes\Martini.json">
+      <Filter>Assets\recipes</Filter>
+    </None>
+    <None Include="Assets\recipes\Negroni.json">
+      <Filter>Assets\recipes</Filter>
+    </None>
+    <None Include="Assets\recipes\Piña Colada.json">
+      <Filter>Assets\recipes</Filter>
+    </None>
+    <None Include="Assets\recipes\Sex on the beach.json">
+      <Filter>Assets\recipes</Filter>
+    </None>
+    <None Include="Assets\recipes\Tom Collins.json">
+      <Filter>Assets\recipes</Filter>
+    </None>
+    <None Include="Assets\recipes\Whisky Sour.json">
       <Filter>Assets\recipes</Filter>
     </None>
   </ItemGroup>

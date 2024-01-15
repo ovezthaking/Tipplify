@@ -20,6 +20,8 @@ namespace Tipplify
 
 		property Platform::String^ Name;
 		property Platform::String^ Description;
+		property Platform::String^ Ingredients;
+		property Platform::String^ PhotoPath;
 	};
 
 		public ref class SelectionPage sealed

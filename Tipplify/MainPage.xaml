@@ -36,17 +36,15 @@
                 <TextBlock x:Name="Title" Text="NAZWA DRINKA" FontSize="24" FontWeight="Bold" Margin="0,0,0,10" FontFamily="Comic Sans MS" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
 
-                <Image x:Name="Photo" Source="Assets\champagnecocktail.jpg" Width="454" Height="713" Margin="0,0,0,10"/>
+                <Image x:Name="DImage" Source="Assets\champagnecocktail.jpg" Width="454" MaxWidth="454" MaxHeight="713" Height="713" Margin="0,0,0,10"/>
             </StackPanel>
 
             <!-- Środkowa kolumna -->
             <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Margin="324,0,0,0">
 
                 <TextBlock Text="Składniki:" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
-                <TextBlock Text="90 ML WYTRAWNEGO SZAMPANA 🍾"/>
-                <TextBlock Text="10 ML KONIAKU 🥃"/>
-                <TextBlock Text="DWIE KROPLE ANGOSTURY 🍼"/>
-                <TextBlock Text="KOSTKA CUKRU 🧊"/>
+                <TextBlock x:Name="Ingredients" TextWrapping="Wrap" Text=""/>
+
 
                 <!-- Opis -->
                 <TextBlock Text="Opis:" FontSize="18" FontWeight="Bold" Margin="0,20,0,10"/>

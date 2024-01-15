@@ -7,6 +7,7 @@
 #include "MainPage.xaml.h"
 #include "SelectionPage.xaml.h"
 
+
 using namespace Tipplify;
 
 using namespace Platform;
@@ -29,13 +30,20 @@ Tipplify::MainPage::MainPage()
     InitializeComponent();
 }
 
-void Tipplify::MainPage::ChangeContent(Platform::String^ newDescription, Platform::String^ newTitle)
+void Tipplify::MainPage::ChangeContent(Platform::String^ newDescription, Platform::String^ newTitle, Platform::String^ newIngredients, Platform::String^ newPath)
 {
     // Zmiana treści w MainPage
+    Image^ image = DImage;
+    Windows::UI::Xaml::Media::Imaging::BitmapImage^ bitmapImage = ref new Windows::UI::Xaml::Media::Imaging::BitmapImage();
+    String^ path = "ms-appx:///" + newPath;
+    Uri^ uri = ref new Uri(path);
+    bitmapImage->UriSource = uri;
+    image->Source = bitmapImage;
+   
+    
     Description->Text = newDescription;
     Title->Text = newTitle;
-    
-
+    Ingredients->Text = newIngredients;
 }
 
 void Tipplify::MainPage::NavToMain(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)

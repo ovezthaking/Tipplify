@@ -18,7 +18,7 @@ namespace Tipplify
 	public:
 		MainPage();
 
-		void ChangeContent(Platform::String^ newDescription, Platform::String^ newTitle);
+		void ChangeContent(Platform::String^ newDescription, Platform::String^ newTitle, Platform::String^ newIngredients, Platform::String^ newPath);
 
 	private:
 		void ChangeContent(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
