@@ -16,22 +16,28 @@
 
                 <TextBox x:Name="DescriptionTextBox" PlaceholderText="Description" Height="138" Width="641" TextWrapping="Wrap"/>
 
-               
+
 
                 <TextBox x:Name="PhotoPathTextBox" PlaceholderText="Photo Path" />
                 <TextBox x:Name="IngredientsTextBox" PlaceholderText="Ingredients (example: Ingreedient 1, ingredient 2, etc.)" Width="641px"/>
                 <Button Content="Add Recipe" Click="AddRecipe" />
             </StackPanel>
-            
+
         </Grid>
 
         <!-- Przycisk do rozwijania i zwijania panelu -->
         <ToggleButton x:Name="ToggleRecipeAddition" Content="Dodaj przepis" HorizontalAlignment="Right" VerticalAlignment="Top" Click="ExpandRecipe_click" />
 
         <!-- Panel z przepisami -->
-        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" ViewChanged="ScrollViewer_ViewChanged" Margin="0,0,1099,0">
+        <Grid Margin="10,46,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="451" Height="135" >
+            <TextBox x:Name="SearchByNameTextBox" PlaceholderText="Szukaj po nazwie..." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="26,0,0,0"  />
+            <TextBox x:Name="SearchByIngredientsTextBox" PlaceholderText="Szukaj po składnikach..." Margin="197,0,0,0"  HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Button Content="Szukaj" Click="SearchRecipes" Height="38" Width="82" Margin="31,51,0,0" VerticalAlignment="Top" />
+        </Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" ViewChanged="ScrollViewer_ViewChanged" Margin="10,186,1089,1">
+
             <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Name="RecipeList" Margin="0,100,0,0" >
-                
+
             </StackPanel>
         </ScrollViewer>
     </Grid>

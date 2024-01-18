@@ -20,6 +20,8 @@
 #include <ppl.h>
 #include <Windows.Security.Cryptography.h>
 #include <Windows.Storage.Streams.h>
+#include <algorithm>
+#include <locale>
 
 using namespace Platform::Collections;
 using namespace Windows::Data::Json;
@@ -411,6 +413,46 @@ void Tipplify::SelectionPage::AddRecipe(Platform::Object^ sender, Windows::UI::X
 
 
 
+void Tipplify::SelectionPage::SearchRecipes(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+    // Pobierz dane z TextBoxów
+    Platform::String^ searchByName = SearchByNameTextBox->Text;
+    Platform::String^ searchByIngredients = SearchByIngredientsTextBox->Text;
+
+    // Zamień Platform::String na std::wstring
+    std::wstring searchByNameWStr(searchByName->Data());
+    std::wstring searchByIngredientsWStr(searchByIngredients->Data());
+
+    // Przetwórz na małe litery
+    std::transform(searchByNameWStr.begin(), searchByNameWStr.end(), searchByNameWStr.begin(), ::towlower);
+    std::transform(searchByIngredientsWStr.begin(), searchByIngredientsWStr.end(), searchByIngredientsWStr.begin(), ::towlower);
+
+    // Wyczyść listę przepisów
+    RecipeList->Children->Clear();
+
+    // Przeszukaj przepisy i dodaj pasujące do listy
+    for (Recipe^ recipe : parsedRecipes)
+    {
+        // Zamień Platform::String na std::wstring
+        std::wstring nameLowerWStr(recipe->Name->Data());
+        std::wstring ingredientsLowerWStr(recipe->Ingredients->Data());
+
+        // Przetwórz na małe litery
+        std::transform(nameLowerWStr.begin(), nameLowerWStr.end(), nameLowerWStr.begin(), ::towlower);
+        std::transform(ingredientsLowerWStr.begin(), ingredientsLowerWStr.end(), ingredientsLowerWStr.begin(), ::towlower);
+
+        if (nameLowerWStr.find(searchByNameWStr) != std::wstring::npos && ingredientsLowerWStr.find(searchByIngredientsWStr) != std::wstring::npos)
+        {
+            // Tworzenie przycisku
+            Button^ recipeButton = ref new Button();
+            recipeButton->Content = recipe->Name; // Ustaw nazwę przycisku na nazwę przepisu
+            recipeButton->Click += ref new RoutedEventHandler(this, &Tipplify::SelectionPage::ChangeRecipe);
+
+            // Dodaj przycisk do kontenera na przyciski (na przykład, Grid lub StackPanel)
+            RecipeList->Children->Append(recipeButton);
+        }
+    }
+}
 
 
 
