@@ -138,6 +138,8 @@ void Tipplify::SelectionPage::ParseAndHandleRecipe(String^ jsonContent)
             recipeButton->Content = name; // Ustaw nazwę przycisku na nazwę przepisu
             recipeButton->Margin = 0, 0, 0, 0;
             recipeButton->Click += ref new RoutedEventHandler(this, &Tipplify::SelectionPage::ChangeRecipe);
+            recipeButton->HorizontalAlignment = Windows::UI::Xaml::HorizontalAlignment::Stretch;
+            recipeButton->HorizontalContentAlignment = Windows::UI::Xaml::HorizontalAlignment::Center;
             
 
             // Dodaj przycisk do kontenera na przyciski (na przykład, Grid lub StackPanel)
@@ -285,6 +287,7 @@ void Tipplify::SelectionPage::ExpandRecipe_click(Platform::Object^ sender, Windo
         // Panel jest obecnie zwinięty, więc rozwijamy go
         RecipeAdditionPanel->Visibility = Windows::UI::Xaml::Visibility::Visible;
         ToggleRecipeAddition->Content = "Schowaj";
+        
     }
     else
     {
@@ -404,6 +407,8 @@ void Tipplify::SelectionPage::AddRecipe(Platform::Object^ sender, Windows::UI::X
             Button^ recipeButton = ref new Button();
             recipeButton->Content = name; // Ustaw nazwę przycisku na nazwę przepisu
             recipeButton->Click += ref new RoutedEventHandler(this, &Tipplify::SelectionPage::ChangeRecipe);
+            recipeButton->HorizontalAlignment = Windows::UI::Xaml::HorizontalAlignment::Stretch;
+            recipeButton->HorizontalContentAlignment = Windows::UI::Xaml::HorizontalAlignment::Center;
 
             // Dodaj przycisk do kontenera na przyciski (na przykład, Grid lub StackPanel)
             RecipeList->Children->Append(recipeButton);
@@ -445,8 +450,12 @@ void Tipplify::SelectionPage::SearchRecipes(Platform::Object^ sender, Windows::U
         {
             // Tworzenie przycisku
             Button^ recipeButton = ref new Button();
+            recipeButton->HorizontalAlignment = Windows::UI::Xaml::HorizontalAlignment::Stretch;
+            recipeButton->HorizontalContentAlignment = Windows::UI::Xaml::HorizontalAlignment::Center;
             recipeButton->Content = recipe->Name; // Ustaw nazwę przycisku na nazwę przepisu
             recipeButton->Click += ref new RoutedEventHandler(this, &Tipplify::SelectionPage::ChangeRecipe);
+            recipeButton->HorizontalAlignment = Windows::UI::Xaml::HorizontalAlignment::Stretch;
+            recipeButton->HorizontalContentAlignment = Windows::UI::Xaml::HorizontalAlignment::Center;
 
             // Dodaj przycisk do kontenera na przyciski (na przykład, Grid lub StackPanel)
             RecipeList->Children->Append(recipeButton);

@@ -115,9 +115,6 @@
     <Image Include="Assets\WelcomeTipple.png">
       <Filter>Assets</Filter>
     </Image>
-    <Image Include="Assets\champagnecocktail.jpg">
-      <Filter>Assets</Filter>
-    </Image>
     <Image Include="Assets\mojito.png">
       <Filter>Assets</Filter>
     </Image>
@@ -152,6 +149,36 @@
       <Filter>Assets</Filter>
     </Image>
     <Image Include="Assets\wsour.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\MainPageBackground.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\champagnecocktail.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\old_fashioned.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\daiquiri.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\bellini.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\manhattan.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\mint_julep.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\sazerac.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\singapore_sling.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\tequila_sunrise.png">
       <Filter>Assets</Filter>
     </Image>
   </ItemGroup>
@@ -207,6 +234,27 @@
       <Filter>Assets\recipes</Filter>
     </None>
     <None Include="Assets\recipes\Whisky Sour.json">
+      <Filter>Assets\recipes</Filter>
+    </None>
+    <None Include="Assets\recipes\Bellini.json">
+      <Filter>Assets\recipes</Filter>
+    </None>
+    <None Include="Assets\recipes\Manhattan.json">
+      <Filter>Assets\recipes</Filter>
+    </None>
+    <None Include="Assets\recipes\Mint Julep.json">
+      <Filter>Assets\recipes</Filter>
+    </None>
+    <None Include="Assets\recipes\Old Fashioned.json">
+      <Filter>Assets\recipes</Filter>
+    </None>
+    <None Include="Assets\recipes\Sazerac.json">
+      <Filter>Assets\recipes</Filter>
+    </None>
+    <None Include="Assets\recipes\Singapore Sling.json">
+      <Filter>Assets\recipes</Filter>
+    </None>
+    <None Include="Assets\recipes\Tequila Sunrise.json">
       <Filter>Assets\recipes</Filter>
     </None>
   </ItemGroup>

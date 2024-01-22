@@ -6,9 +6,12 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" RequestedTheme="Dark">
 
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="ms-appx:///Assets/MainPageBackground.png"/>
+        </Grid.Background>
         <!-- Panel do dodawania przepisów -->
         <Grid x:Name="RecipeAdditionPanel" Height="Auto" Visibility="Collapsed" Background="LightGray" Opacity="0.9">
             <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="RecipeAddition">
@@ -29,12 +32,12 @@
         <ToggleButton x:Name="ToggleRecipeAddition" Content="Dodaj przepis" HorizontalAlignment="Right" VerticalAlignment="Top" Click="ExpandRecipe_click" />
 
         <!-- Panel z przepisami -->
-        <Grid Margin="10,46,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="451" Height="135" >
+        <Grid x:Name="SearchRecipe" Margin="10,46,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="451" Height="135" >
             <TextBox x:Name="SearchByNameTextBox" PlaceholderText="Szukaj po nazwie..." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="26,0,0,0"  />
             <TextBox x:Name="SearchByIngredientsTextBox" PlaceholderText="Szukaj po składnikach..." Margin="197,0,0,0"  HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <Button Content="Szukaj" Click="SearchRecipes" Height="38" Width="82" Margin="31,51,0,0" VerticalAlignment="Top" />
         </Grid>
-        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" ViewChanged="ScrollViewer_ViewChanged" Margin="10,186,1089,1">
+        <ScrollViewer x:Name="scroller" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" ViewChanged="ScrollViewer_ViewChanged" Margin="10,186,1089,1" >
 
             <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Name="RecipeList" Margin="0,100,0,0" >
 

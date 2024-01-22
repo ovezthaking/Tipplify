@@ -235,23 +235,32 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Assets\bellini.png" />
     <Image Include="Assets\blue_lagoon.png" />
     <Image Include="Assets\caipirinha.png" />
-    <Image Include="Assets\champagnecocktail.jpg" />
+    <Image Include="Assets\champagnecocktail.png" />
     <Image Include="Assets\cosmopolitan.png" />
+    <Image Include="Assets\daiquiri.png" />
     <Image Include="Assets\LockScreenLogo.scale-200.png" />
+    <Image Include="Assets\MainPageBackground.png" />
     <Image Include="Assets\mai_tai.png" />
+    <Image Include="Assets\manhattan.png" />
     <Image Include="Assets\margarita.png" />
     <Image Include="Assets\martini.png" />
+    <Image Include="Assets\mint_julep.png" />
     <Image Include="Assets\mojito.png" />
     <Image Include="Assets\negroni.png" />
+    <Image Include="Assets\old_fashioned.png" />
     <Image Include="Assets\pina_colada.png" />
+    <Image Include="Assets\sazerac.png" />
     <Image Include="Assets\sex_on_the_beach.png" />
+    <Image Include="Assets\singapore_sling.png" />
     <Image Include="Assets\SplashScreen.scale-200.png" />
     <Image Include="Assets\Square150x150Logo.scale-200.png" />
     <Image Include="Assets\Square44x44Logo.scale-200.png" />
     <Image Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Image Include="Assets\StoreLogo.png" />
+    <Image Include="Assets\tequila_sunrise.png" />
     <Image Include="Assets\tom_collins.png" />
     <Image Include="Assets\WelcomeTipple.png" />
     <Image Include="Assets\Wide310x150Logo.scale-200.png" />
@@ -282,18 +291,25 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\recipes\Bellini.json" />
     <None Include="Assets\recipes\Blue Lagoon.json" />
     <None Include="Assets\recipes\Caipirinha.json" />
     <None Include="Assets\recipes\Champagne Cocktail.json" />
     <None Include="Assets\recipes\Cosmopolitan.json" />
     <None Include="Assets\recipes\Daiquiri.json" />
     <None Include="Assets\recipes\Mai Tai.json" />
+    <None Include="Assets\recipes\Manhattan.json" />
     <None Include="Assets\recipes\Margarita.json" />
     <None Include="Assets\recipes\Martini.json" />
+    <None Include="Assets\recipes\Mint Julep.json" />
     <None Include="Assets\recipes\Mojito.json" />
     <None Include="Assets\recipes\Negroni.json" />
+    <None Include="Assets\recipes\Old Fashioned.json" />
     <None Include="Assets\recipes\Piña Colada.json" />
+    <None Include="Assets\recipes\Sazerac.json" />
     <None Include="Assets\recipes\Sex on the beach.json" />
+    <None Include="Assets\recipes\Singapore Sling.json" />
+    <None Include="Assets\recipes\Tequila Sunrise.json" />
     <None Include="Assets\recipes\Tom Collins.json" />
     <None Include="Assets\recipes\Whisky Sour.json" />
     <None Include="Lib\recipe.json" />
