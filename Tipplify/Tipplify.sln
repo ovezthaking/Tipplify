@@ -7,6 +7,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tipplify", "Tipplify.vcxpro
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		asdsasda|ARM = asdsasda|ARM
+		asdsasda|ARM64 = asdsasda|ARM64
+		asdsasda|x64 = asdsasda|x64
+		asdsasda|x86 = asdsasda|x86
 		Debug|ARM = Debug|ARM
 		Debug|ARM64 = Debug|ARM64
 		Debug|x64 = Debug|x64
@@ -17,6 +21,18 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9523F59A-5B26-4E32-A038-06115A51F92A}.asdsasda|ARM.ActiveCfg = asdsasda|ARM
+		{9523F59A-5B26-4E32-A038-06115A51F92A}.asdsasda|ARM.Build.0 = asdsasda|ARM
+		{9523F59A-5B26-4E32-A038-06115A51F92A}.asdsasda|ARM.Deploy.0 = asdsasda|ARM
+		{9523F59A-5B26-4E32-A038-06115A51F92A}.asdsasda|ARM64.ActiveCfg = asdsasda|ARM64
+		{9523F59A-5B26-4E32-A038-06115A51F92A}.asdsasda|ARM64.Build.0 = asdsasda|ARM64
+		{9523F59A-5B26-4E32-A038-06115A51F92A}.asdsasda|ARM64.Deploy.0 = asdsasda|ARM64
+		{9523F59A-5B26-4E32-A038-06115A51F92A}.asdsasda|x64.ActiveCfg = asdsasda|x64
+		{9523F59A-5B26-4E32-A038-06115A51F92A}.asdsasda|x64.Build.0 = asdsasda|x64
+		{9523F59A-5B26-4E32-A038-06115A51F92A}.asdsasda|x64.Deploy.0 = asdsasda|x64
+		{9523F59A-5B26-4E32-A038-06115A51F92A}.asdsasda|x86.ActiveCfg = asdsasda|Win32
+		{9523F59A-5B26-4E32-A038-06115A51F92A}.asdsasda|x86.Build.0 = asdsasda|Win32
+		{9523F59A-5B26-4E32-A038-06115A51F92A}.asdsasda|x86.Deploy.0 = asdsasda|Win32
 		{9523F59A-5B26-4E32-A038-06115A51F92A}.Debug|ARM.ActiveCfg = Debug|ARM
 		{9523F59A-5B26-4E32-A038-06115A51F92A}.Debug|ARM.Build.0 = Debug|ARM
 		{9523F59A-5B26-4E32-A038-06115A51F92A}.Debug|ARM.Deploy.0 = Debug|ARM

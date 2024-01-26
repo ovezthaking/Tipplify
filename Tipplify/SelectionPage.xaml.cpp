@@ -399,7 +399,7 @@ void Tipplify::SelectionPage::AddRecipe(Platform::Object^ sender, Windows::UI::X
 
             // Wyczyszczenie TextBoxów po dodaniu przepisu
             NameTextBox->Text = "";
-            DescriptionTextBox->Text = localFolder->Path + filePath; //TEMPORARY: SCEIZKA STWORZONEGO PLIKU W NAMETEXTBOXIE
+            DescriptionTextBox->Text = ""; // localFolder->Path + filePath; //TEMPORARY: SCEIZKA STWORZONEGO PLIKU W NAMETEXTBOXIE
             PhotoPathTextBox->Text = "";
             IngredientsTextBox->Text = "";
 
