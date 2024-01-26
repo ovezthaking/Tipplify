@@ -15,11 +15,11 @@
 //#include <cppconn/driver.h>
 //#include <cppconn/exception.h>
 //#include <cppconn/prepared_statement.h>
-#include "../../../../../Program Files/MySQL/Connector ODBC 8.2/include/jdbc/cppconn/driver.h"
-#include "../../../../../Program Files/MySQL/Connector ODBC 8.2/include/jdbc/cppconn/exception.h"
-#include "../../../../../Program Files/MySQL/Connector ODBC 8.2/include/jdbc/cppconn/prepared_statement.h"
-#include "../../../../../Program Files/MySQL/Connector ODBC 8.2/include/jdbc/mysql_connection.h"
-#include "../../../../../Program Files/MySQL/Connector ODBC 8.2/include/jdbc/mysql_driver.h"
+//#include "../../../../../Program Files/MySQL/Connector ODBC 8.2/include/jdbc/cppconn/driver.h"
+//#include "../../../../../Program Files/MySQL/Connector ODBC 8.2/include/jdbc/cppconn/exception.h"
+//#include "../../../../../Program Files/MySQL/Connector ODBC 8.2/include/jdbc/cppconn/prepared_statement.h"
+//#include "../../../../../Program Files/MySQL/Connector ODBC 8.2/include/jdbc/mysql_connection.h"
+//#include "../../../../../Program Files/MySQL/Connector ODBC 8.2/include/jdbc/mysql_driver.h"
 
 using namespace Tipplify;
 
